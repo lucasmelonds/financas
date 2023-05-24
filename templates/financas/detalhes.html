@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Finanças Pessoais</title>
+    </head>
+    <body>
+        <h1>
+            Finanças Pessoais
+        </h1>
+        <h2>{{ titulo.text | upper }}</h2>
+        <h3>Lista das receitas cadastradas:</h3>
+        {% if msg_erro %}
+            <hr/>
+            <b>{{ msg_erro }}</b>
+            <hr/>
+        {% endif %}
+        <ul>
+        {% for receita in titulo.receita_set.all %}
+            {{ receita.text | truncatewords:11 }} - {{ receita.valor | truncatewords:11 }} <br>
+        {% endfor %}
+        </ul>
+        <br>
+
+        <h3>Lista das despesas cadastradas:</h3>
+
+        <ul>
+            {% for despesa in titulo.despesa_set.all %}
+                {{ despesa.text | truncatewords:11 }} - {{ despesa.valor | truncatewords:11 }} <br>
+            {% endfor %}
+        </ul>
+
+        <br>
+
+        <h3>Balanço mensal:</h3>
+
+        <ul>
+            {% for balanco in titulo.balanco_set.all %}
+                <li> <p>Valor total da receita - {{ balanco.valor_receita | truncatewords:11 }}</p> </li>
+                <li> <p>Valor total da despesa - {{ balanco.valor_despesa | truncatewords:11 }}</p> </li>
+                <li> <p>Valor total que sobrou - {{ balanco.valor_total | truncatewords:11 }}</p> </li>
+            {% endfor %}
+        </ul>
+
+        <br>
+
+        <a class="btn" role="button" href="/admin">Administração</a>
+        <a class="btn btn-outline-primary" role="button"
+            href="{% url 'financas:index' %}">Principal</a>
+
+    </body>
+</html>
+

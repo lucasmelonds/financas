@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Finanças Pessoais</title>
+    </head>
+    <body>
+        <h1>
+            Finanças Pessoais
+        </h1>
+        <h2>Balancete mensal:</h2>
+
+        {% if lista_titulo %}
+        <ul>
+        {% for titulo in lista_titulo %}
+            <li>
+                <a href=
+                    "{% url 'financas:detalhes' titulo.id %}">{{ titulo.text | truncatewords:11 }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+        {% else %}
+            <h3>Nenhum balanco cadastrada até o momento!</h3>
+        {% endif %}
+
+        <br>
+
+        <a class="btn" role="button" href="/admin">Administração</a>
+        <a class="btn btn-outline-primary" role="button" href="{% url 'financas:index' %}">Principal</a>
+
+    </body>
+</html>
+

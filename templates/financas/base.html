@@ -1,0 +1,20 @@
+{% load static %}
+<html>
+    <head>
+        <title>{% block titulo %}Finanas Pessoais{% endblock %}</title>
+    </head>
+    <body>
+        <h1>
+            Finanças Pessoais
+        </h1>
+        <h2>{% block titulo_pagina %}{% endblock %}</h2>
+
+        {% block conteudo %}{% endblock %}
+
+        {% block menu %}
+        <a class="btn" role="button" href="/admin">Administração</a>
+        <a class="btn btn-outline-primary" role="button"
+            href="{% url 'financas:index' %}">Principal</a>
+        {% endblock %}
+    </body>
+</html>
